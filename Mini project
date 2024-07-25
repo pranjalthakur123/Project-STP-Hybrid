@@ -1,0 +1,486 @@
+// css used
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+//index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './styles/index.scss';
+import App from './app';
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
+
+//Styles 
+* {
+    font-family: "Ubuntu", sans-serif;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-xxl);
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-size: var(--fs-md);
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+:root{
+    //font size
+    --fs-sm: 14px;
+    --fs-md: 16px;
+    --fs-lg: 18px;
+    --fs-xl: 22px;
+    --fs-xxl: 24px;
+    --fs-xxxl: 28px;
+    //font weight 
+    --fw-light: 400;
+    --fw-normal:500;
+    --fw-medium:550;
+    --fw-bold: 600;
+    //border radius
+    --br-sm: 5px;
+    //colours
+    --black: #3C3D43;
+    --white: #FFFFFF;
+    --rose: #FDBAA3;
+    --red: #F7685C;
+    --green: #30C58D;
+    --cream: #FFFDFA;
+    --grey: #808080;
+
+}
+
+.light{
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.dark{
+    background-color: var(--black);
+    color: var(--white);
+}
+
+//App index.js
+import React from "react";
+import { BrowserRouter,Routes } from "react-router-dom";
+import Loader from "../components/atoms/shared/loader";
+function App() {
+    return (
+    <BrowserRouter>
+    </Login>
+        <Routes>
+          <Route path="/" Component ={}
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+  
+  export default App;
+
+//section index.js
+import React from 'react';
+import styles from './login.module.scss';
+
+import Left from './section/left';
+import Form from './section/form';
+
+function Login() {
+    return (
+      <main className={styles.container}>
+            <Left />
+            <Form />
+
+      </main>
+    );
+  }
+  
+  export default Login;
+
+.container {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+    height: 100vh;
+   
+    grid-template-columns: repeat(2, 1fr);
+
+}
+
+//form index.js
+import React, { useState } from 'react';
+import styles from './form.module.scss';
+import Logo from '../../../../components/atoms/shared/brands';
+import {Icon} from '@iconify/react';
+import Button from '../../../../components/atoms/button';
+
+function Form() {
+  const [email, setEmail]=useState('');
+  const [password, setpassword] = useState('');
+    return (
+      <section className={styles['form-container']}>
+          <Logo />
+        <div className={styles.form}>
+          <article className={styles.google}>
+            <Icon icon={'flat-color-icons:google'} />
+            <h3>Join with Google</h3>
+          </article>
+          
+          <div className='styles.option'><hr></hr>
+          <center><span>  or join with email address </span></center><br></br>
+          </div>
+          
+          <article className={styles.details}>
+            <input 
+            type='email'
+            placeholder={"type email"}
+            value={email} 
+            onChange={(e)=>setEmail(e.target.value)} />
+
+       <input 
+       type='password'
+            placeholder={"type password"}
+            value={password} 
+            onChange={(e)=>setpassword(e.target.value)} />
+          
+         
+         
+          <Button 
+          className={styles.email}
+            text="Join with Email"
+            icon ="simple-line-icons:login"
+            
+            
+          />
+          </article>
+          </div>
+      </section>
+    );
+  }
+  
+  export default Form;
+.form-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    .form {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+
+        .google {
+            display: flex;
+            width: 320px;
+            gap: 10px;
+            margin: 25px 0;
+            cursor: pointer;
+            border-radius: 8px;
+            padding: 13px 20px;
+            align-items: center;
+            color: var(--white);
+            border: 1px solid red;
+            justify-content: center;
+            background-color: #f7685c;
+            
+        
+        svg {
+            width :24px;
+            height: 24px;
+        }
+        h3{
+            font-size: var(--fs-lg);
+            
+        }
+    }
+
+        .option {
+            display: flex;
+            align-items: center;
+            
+            justify-content: center;
+          
+            border: 1px solid var(--grey);
+            height: 1px;
+
+            span {
+                z-index: 1;
+                padding: 0 10px;
+                position: absolute;
+                
+                
+            }
+        }
+        .details {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+        
+        .email {
+            background-color: #30C58D;
+            color: var(--white);
+            cursor: pointer;
+           
+        }
+    }
+    }
+    
+}
+
+//left index.js
+import React from 'react';
+import styles from './left.module.scss';
+import LoginIng from '../../../../asserts/login.png';
+function Left() {
+    return (
+        <section className={styles.left}>
+            <img src={LoginIng } alt="login img"></img>
+            <div>
+                <h1>Keep life simple</h1>
+                <p>Store all your notes in a simple and intutive app that helps you enjoy what important in life .</p>
+            </div>
+        </section>
+    );
+  }
+  
+  export default Left;
+
+.left {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+
+    .img {
+        height: 300px;
+        margin-bottom: 20px;
+        
+    }
+    div {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        h1 {
+            line-height: 45px;
+            font-size: var(--fs-xxxl);
+            font-weight: var(--fw-bold);
+        }
+        p{
+            font-size: var(--fs-lg);
+            color: var(--grey);
+        }
+    }
+}
+
+//button
+import React from "react";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import styles from './button.module.scss';
+function Button(props){
+    const {text, icon , handleClick, className,isDisable } = props;
+    return(
+        <article className={'${styles.button} ${className}'} onClick={handleClick}>
+            <Icon icon={icon} />
+            <h3>{text}</h3>
+          </article>
+    );
+}
+
+export default Button;
+.button {
+    display: flex;
+    width: 320px;
+    gap: 10px;
+    margin: 25px 0;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 13px 20px;
+    align-items: center;
+    color: var(--white);
+    border: 1px solid red;
+    justify-content: center;
+    background-color: #f7685c;
+    cursor: pointer;
+    
+
+
+h3{
+    font-size: var(--fs-lg);
+    
+}
+}
+
+//input
+import React from "react";
+import styles from './input.module.scss';
+function Input(props){
+    const {type, value, onChange, title, placeholder, className, isdisable}=props
+    return(
+        <article className={'${styles.box} ${className}'}>
+            {title && <h4>{title}</h4>}
+            <input 
+                type={type || "text"}
+                placeholder={placeholder || title}
+                value={value}
+                onChange={onChange}
+                disabled={isdisable}
+            >
+            
+            </input>
+        </article>
+    );
+}
+
+export default Input;
+.box {
+    display:  flex;
+    gap: 5px;
+    flex-direction: column;
+     
+    h4 {
+        font-size: var(--fs-md);
+        font-family: var(--fw-medium);
+    }
+    input {
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: var(--fs-md);
+        border: 1px solid var(--grey);    
+    }
+}
+
+//progressbar
+import React from "react";
+import styles from './bar.module.scss';
+function ProgressBar(props){
+    const {percentage} =props;
+    return(
+        <div className={styles.container}>
+            <span style ={{width: percentage || "50%"}}></span>
+        </div>
+    );
+}
+
+export default ProgressBar;
+.container {
+    width: 320px;
+    height: 10px;
+    gap: 15px;
+    display: flex;
+    overflow: hidden;
+    border-radius: 1000px;
+    background-color:#fdbaa3;
+    
+
+    span {
+        border-radius: 1000px;
+        background-color: black;
+    }
+}
+
+//brand
+import React from 'react';
+
+import styles from './brand.module.scss';
+function Logo(){
+    return(
+        <article className={styles.brand}>
+                
+                <h1>__Note.<span>me</span></h1>
+        </article>
+    );
+}
+export default Logo;
+.brand {
+    display: flex;
+    align-items: center;
+    h1 {
+        display: flex;
+        font-size: var(--fs-xxxl);
+        span {
+            font-weight: 200;
+            font-size: inherit;
+        }
+    }
+}
+
+
+//loader
+import React from "react";
+import styles from './loader.module.scss';
+import ProgressBar from "../../progressbar";
+import Logo from "../brands";
+function Loader(){
+    return(
+        <article className={styles.container}>
+            <Logo/>
+            <ProgressBar />
+        </article>
+    );
+}
+
+export default Loader;
+.container {
+    display: flex;
+    gap: 15px;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+app.js
+import React from "react";
+import { BrowserRouter,Routes } from "react-router-dom";
+import Loader from "../components/atoms/shared/loader";
+function App() {
+    return (
+    <BrowserRouter>
+    </Login>
+        <Routes>
+          <Route path="/" Component ={}
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+  
+  export default App;
+
